@@ -18,3 +18,14 @@ stages:
     - train
     outs:
     - resources/model.pkl
+  eval:
+    cmd: python src/eval.py
+    deps:
+    - resources/model.pkl
+    - resources/test_data.csv
+    - src/eval.py
+    params:
+    - eval
+    metrics:
+    - metrics.json:
+        cache: false

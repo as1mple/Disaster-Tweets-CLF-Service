@@ -28,13 +28,37 @@ stages:
       md5: be30ba4afb8f8bb7ce91390e65bbfead
       size: 789386
     - path: src/train.py
-      md5: 07eda664e311b62818935ba8d4097b7c
-      size: 1300
+      md5: 19a31e8672adc3556e164f9883004723
+      size: 1201
     params:
       params.yaml:
         train:
-          seed: 1
+          penalty: elasticnet
+          solver: saga
+          l1_ratio: 0.7
+          C: 1
+          random_state: 42
     outs:
     - path: resources/model.pkl
-      md5: 803fad08881063938e5245f10489853e
-      size: 1002450
+      md5: 84592ea4651c02f480648d1ad170458b
+      size: 1002462
+  eval:
+    cmd: python src/eval.py
+    deps:
+    - path: resources/model.pkl
+      md5: 84592ea4651c02f480648d1ad170458b
+      size: 1002462
+    - path: resources/test_data.csv
+      md5: 0e9773795889ab90473a9963c8bf5edd
+      size: 198358
+    - path: src/eval.py
+      md5: 26f8aadc06f080f327bfd46a1a0526b5
+      size: 834
+    params:
+      params.yaml:
+        eval:
+          seed: 1
+    outs:
+    - path: metrics.json
+      md5: e21c94ece6252e0bb7595f64f5ffe199
+      size: 62
