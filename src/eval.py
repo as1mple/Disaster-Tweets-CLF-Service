@@ -8,8 +8,8 @@ from sklearn.metrics import f1_score
 
 if __name__ == "__main__":
 
-    test_data = pd.read_csv('resources/test_data.csv')
-    clf = pickle.load(open('resources/model.pkl', "rb"))
+    test_data = pd.read_csv("resources/test_data.csv")
+    clf = pickle.load(open("resources/model.pkl", "rb"))
 
     x_test = test_data.text.values
     y_test = test_data.target.values
