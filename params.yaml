@@ -1,0 +1,9 @@
+split:
+  seed: 1
+  test_size: 0.2
+
+  train:
+    seed: 1
+
+  eval:
+    seed: 1

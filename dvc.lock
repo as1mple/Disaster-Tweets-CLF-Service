@@ -1,0 +1,27 @@
+schema: '2.0'
+stages:
+  split:
+    cmd: python src/split.py
+    deps:
+    - path: resources/train.csv
+      md5: f147942c91d00d754503775341d13682
+      size: 987712
+    - path: src/split.py
+      md5: 1271ed19d9f55898ca67dce697d5ad25
+      size: 671
+    params:
+      params.yaml:
+        split:
+          seed: 1
+          test_size: 0.2
+          train:
+            seed: 1
+          eval:
+            seed: 1
+    outs:
+    - path: resources/test_data.csv
+      md5: 0e9773795889ab90473a9963c8bf5edd
+      size: 198358
+    - path: resources/train_data.csv
+      md5: be30ba4afb8f8bb7ce91390e65bbfead
+      size: 789386

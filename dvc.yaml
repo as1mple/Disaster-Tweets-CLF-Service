@@ -1,0 +1,11 @@
+stages:
+  split:
+    cmd: python src/split.py
+    deps:
+    - resources/train.csv
+    - src/split.py
+    params:
+    - split
+    outs:
+    - resources/test_data.csv
+    - resources/train_data.csv

@@ -1,7 +1,10 @@
-# DisasterTweets
+ # DisasterTweets
 
 > dvc init
 
 > dvc remote add -d storage gdrive://1zQRLy_WQodgS4MBLG57TRsl5LTuKSG5H
 
-> dvc add resources/train.csv 
+> dvc add resources/train.csv
+ 
+ 
+> dvc run -n split -p split -d resources/train.csv -d src/split.py -o resources/train_data.csv -o resources/test_data.csv python src/split.py
