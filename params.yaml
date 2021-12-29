@@ -1,6 +1,7 @@
 split:
   seed: 1
   test_size: 0.2
+  shuffle: True
 
 train:
   penalty: 'elasticnet'

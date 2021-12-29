@@ -7,13 +7,14 @@ stages:
       md5: f147942c91d00d754503775341d13682
       size: 987712
     - path: src/split.py
-      md5: 7286ae5d6d41c652cd8a526083f4c817
-      size: 608
+      md5: dac3d208b0546b47c19ab71d2ac6db8d
+      size: 661
     params:
       params.yaml:
         split:
           seed: 1
           test_size: 0.2
+          shuffle: true
     outs:
     - path: resources/test_data.csv
       md5: 0e9773795889ab90473a9963c8bf5edd
@@ -28,8 +29,8 @@ stages:
       md5: be30ba4afb8f8bb7ce91390e65bbfead
       size: 789386
     - path: src/train.py
-      md5: 19a31e8672adc3556e164f9883004723
-      size: 1201
+      md5: 858c6ee99d4b84dbbfbb4704b6ee5d1e
+      size: 1136
     params:
       params.yaml:
         train:
@@ -40,20 +41,20 @@ stages:
           random_state: 42
     outs:
     - path: resources/model.pkl
-      md5: 84592ea4651c02f480648d1ad170458b
+      md5: 77258efac58c32a7773513ae06ae6961
       size: 1002462
   eval:
     cmd: python src/eval.py
     deps:
     - path: resources/model.pkl
-      md5: 84592ea4651c02f480648d1ad170458b
+      md5: 77258efac58c32a7773513ae06ae6961
       size: 1002462
     - path: resources/test_data.csv
       md5: 0e9773795889ab90473a9963c8bf5edd
       size: 198358
     - path: src/eval.py
-      md5: 26f8aadc06f080f327bfd46a1a0526b5
-      size: 834
+      md5: 28e1b8b278ab9a58d299cbbffd648441
+      size: 684
     params:
       params.yaml:
         eval:
