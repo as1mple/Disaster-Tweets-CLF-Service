@@ -2,6 +2,7 @@ import re
 import string
 
 import unidecode
+import nltk
 from nltk.corpus import stopwords
 
 
@@ -29,3 +30,14 @@ def remove_stopwords(text) -> list:
 
 def array_to_str(text) -> str:
     return ' '.join(text)
+
+
+def piepline_preprocess(text: list) -> list:
+    tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+')
+
+    process = [preprocessing, tokenizer.tokenize, remove_stopwords, array_to_str]
+
+    for proc in process:
+        text = list(map(proc, text))
+
+    return text

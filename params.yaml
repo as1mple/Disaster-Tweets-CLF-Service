@@ -3,7 +3,11 @@ split:
   test_size: 0.2
 
 train:
-  seed: 1
+  penalty: 'elasticnet'
+  solver: 'saga'
+  l1_ratio: 0.7
+  C: 1
+  random_state: 42
 
 eval:
   seed: 1
