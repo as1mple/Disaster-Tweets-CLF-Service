@@ -8,3 +8,5 @@
  
  
 > dvc run -n split -p split -d resources/train.csv -d src/split.py -o resources/train_data.csv -o resources/test_data.csv python src/split.py
+
+> dvc run -n train -p train -d resources/train_data.csv -d src/train.py -o resources/model.pkl python src/train.py

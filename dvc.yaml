@@ -9,3 +9,12 @@ stages:
     outs:
     - resources/test_data.csv
     - resources/train_data.csv
+  train:
+    cmd: python src/train.py
+    deps:
+    - resources/train_data.csv
+    - src/train.py
+    params:
+    - train
+    outs:
+    - resources/model.pkl
