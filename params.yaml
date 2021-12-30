@@ -6,7 +6,7 @@ split:
 train:
   penalty: elasticnet
   solver: saga
-  l1_ratio: 0.65
+  l1_ratio: 0.67
   C: 1
   random_state: 42
 
