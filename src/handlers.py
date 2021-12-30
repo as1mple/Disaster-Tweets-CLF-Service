@@ -34,12 +34,13 @@ def get_satus():
 
 @router.post("/api/v1/text/", response_model=ResponseModel)
 async def predict(text: RequestParams):
-    logger.info("Run predict")
     try:
         text = str(text)
+        logger.info(f"Input text => {text}")
         x_test = processing.piepline_preprocess([text])
-        result = router.model.predict(x_test)
+        result = router.model.predict(x_test)[0]
         predict_proba = max(router.model.predict_proba(x_test)[0])
+        logger.info(f"{result} => {predict_proba}")
 
         return ResponseModel(predict=result, probability=predict_proba)
     except AttributeError:
