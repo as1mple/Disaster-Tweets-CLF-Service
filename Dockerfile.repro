@@ -1,0 +1,20 @@
+FROM python:3.8
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY requirements_repro.txt ./requirements_repro.txt
+
+RUN python -m pip install -U pip && \
+    python -m pip install -r requirements_repro.txt && \
+    python -m pip cache purge
+
+RUN python -m nltk.downloader stopwords
+
+COPY ./resources/train.csv /app/resources/train.csv
+COPY ./src/ /app/src/
+COPY ./params.yaml /app/params.yaml
+
+WORKDIR /app/
+
+CMD python src/split.py && echo "Done split.py" && \
+    python src/train.py && echo "Done train.py" && \
+    python src/eval.py && echo "Done eval.py" && cat metrics.json

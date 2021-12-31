@@ -7,8 +7,8 @@ stages:
       md5: f147942c91d00d754503775341d13682
       size: 987712
     - path: src/split.py
-      md5: dac3d208b0546b47c19ab71d2ac6db8d
-      size: 661
+      md5: 651034bed20aa4c933dd372dfbb1347b
+      size: 568
     params:
       params.yaml:
         split:
@@ -29,31 +29,31 @@ stages:
       md5: be30ba4afb8f8bb7ce91390e65bbfead
       size: 789386
     - path: src/train.py
-      md5: 858c6ee99d4b84dbbfbb4704b6ee5d1e
-      size: 1136
+      md5: bb841df8cf739c205deef84fd096a46a
+      size: 1028
     params:
       params.yaml:
         train:
           penalty: elasticnet
           solver: saga
-          l1_ratio: 0.7
+          l1_ratio: 0.2
           C: 1
           random_state: 42
     outs:
     - path: resources/model.pkl
-      md5: 77258efac58c32a7773513ae06ae6961
+      md5: ebbf27ead838df19ae43cfdbca0c7395
       size: 1002462
   eval:
     cmd: python src/eval.py
     deps:
     - path: resources/model.pkl
-      md5: 77258efac58c32a7773513ae06ae6961
+      md5: ebbf27ead838df19ae43cfdbca0c7395
       size: 1002462
     - path: resources/test_data.csv
       md5: 0e9773795889ab90473a9963c8bf5edd
       size: 198358
     - path: src/eval.py
-      md5: 28e1b8b278ab9a58d299cbbffd648441
+      md5: df13a49fb1d702313576e76117d941dd
       size: 684
     params:
       params.yaml:
@@ -61,5 +61,5 @@ stages:
           seed: 1
     outs:
     - path: metrics.json
-      md5: e21c94ece6252e0bb7595f64f5ffe199
-      size: 62
+      md5: 58d1dfc4e10f34cc3c3eb946970340c2
+      size: 61
