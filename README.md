@@ -16,7 +16,7 @@
 ### Run FastApi
 > pip install -r requirements.txt
 > 
-> uvicorn uvicorn src.start_api:app
+> uvicorn src.start_api:app
 
 
 ### Build & Run docker with fastapi
