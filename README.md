@@ -17,7 +17,7 @@
 
 
 ### Build & Run docker with fastapi
-> sudo docker build -t fastapi_tweets -f Dockerfile.fastapi .
+> dvc pull; dvc repro && sudo docker build -t fastapi_tweets -f Dockerfile.fastapi .
 >
 > sudo docker run -p 8080:5011 -v /{full path to project}/logs/:/app/logs/ fastapi_tweets
 
