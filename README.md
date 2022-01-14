@@ -25,5 +25,5 @@
 
 >dvc pull resources/model.pkl && sudo docker run -p 8080:5011 -v /{full path to project}/logs/:/app/logs/ fastapi_tweets
 
-## Split & Train & Eval & Get metrics without "dvc repro"
+## Build & Run Train docker
 > sudo docker build -t repro -f Dockerfile.repro . && sudo docker run -v /{full path to project}/:/app/  repro
