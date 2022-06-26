@@ -7,14 +7,9 @@ COPY requirements_dvc.txt ./requirements_dvc.txt
 RUN python -m pip install -U pip && \
     python -m pip install -r requirements.txt && \
     python -m pip install -r requirements_dvc.txt && \
-    python -m pip cache purge
-
-RUN pip install -U nltk
-RUN python -m nltk.downloader -q all
-RUN pip install -U numpy
+    python -m pip cache purge \
 
 COPY ./ /app/
-
 
 WORKDIR /app/
 

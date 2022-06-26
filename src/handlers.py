@@ -1,12 +1,15 @@
 import sys
 import pickle
 
+import nltk
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter
 from loguru import logger
 
 from src.modules.data_models import ResponseModel, Message, RequestParams
 from src.modules import processing
+
+nltk.download('stopwords')
 
 logger.configure(
     handlers=[
