@@ -1,0 +1,22 @@
+cmd: python3 src/eval.py
+deps:
+- path: requirements.txt
+  md5: 1f60dd42db13607054b97dfb6f6756ac
+  size: 122
+- path: resources/model.pkl
+  md5: dc0484f57fc02f135cefca978d75be25
+  size: 1002463
+- path: resources/test_data.csv
+  md5: 0e9773795889ab90473a9963c8bf5edd
+  size: 198358
+- path: src/eval.py
+  md5: df13a49fb1d702313576e76117d941dd
+  size: 684
+params:
+  params.yaml:
+    eval:
+      seed: 1
+outs:
+- path: metrics.json
+  md5: 58d1dfc4e10f34cc3c3eb946970340c2
+  size: 61

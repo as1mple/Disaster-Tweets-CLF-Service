@@ -1,0 +1,36 @@
+name: Disaster
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    steps:
+    - uses: actions/checkout@v2
+    - run: git fetch --prune --unshallow
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+        python -m pip install -r requirements_dvc.tx
+
+    - name: Deploy to Heroku
+      if: github.ref == 'refs/heads/main' && job.status == 'success'
+      uses: akhileshns/heroku-deploy@v3.8.9
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_TOKEN }}
+        heroku_app_name: "disastertweetsfastapi"
+        heroku_email: "piterone.square@gmail.com"
+        usedocker: true

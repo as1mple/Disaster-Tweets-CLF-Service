@@ -1,7 +1,8 @@
 stages:
   split:
-    cmd: python src/split.py
+    cmd: python3 src/split.py
     deps:
+    - requirements.txt
     - resources/train.csv
     - src/split.py
     params:
@@ -10,8 +11,9 @@ stages:
     - resources/test_data.csv
     - resources/train_data.csv
   train:
-    cmd: python src/train.py
+    cmd: python3 src/train.py
     deps:
+    - requirements_repro.txt
     - resources/train_data.csv
     - src/train.py
     params:
@@ -19,8 +21,9 @@ stages:
     outs:
     - resources/model.pkl
   eval:
-    cmd: python src/eval.py
+    cmd: python3 src/eval.py
     deps:
+    - requirements.txt
     - resources/model.pkl
     - resources/test_data.csv
     - src/eval.py

@@ -1,8 +1,11 @@
 schema: '2.0'
 stages:
   split:
-    cmd: python src/split.py
+    cmd: python3 src/split.py
     deps:
+    - path: requirements.txt
+      md5: 1f60dd42db13607054b97dfb6f6756ac
+      size: 122
     - path: resources/train.csv
       md5: f147942c91d00d754503775341d13682
       size: 987712
@@ -23,14 +26,17 @@ stages:
       md5: be30ba4afb8f8bb7ce91390e65bbfead
       size: 789386
   train:
-    cmd: python src/train.py
+    cmd: python3 src/train.py
     deps:
+    - path: requirements_repro.txt
+      md5: 3e3219a71f9a580f95a3b0ba8bdd7cad
+      size: 283
     - path: resources/train_data.csv
       md5: be30ba4afb8f8bb7ce91390e65bbfead
       size: 789386
     - path: src/train.py
-      md5: bb841df8cf739c205deef84fd096a46a
-      size: 1028
+      md5: bf4ce87015d7fa53cd73c2bff2796b24
+      size: 1027
     params:
       params.yaml:
         train:
@@ -41,14 +47,17 @@ stages:
           random_state: 42
     outs:
     - path: resources/model.pkl
-      md5: ebbf27ead838df19ae43cfdbca0c7395
-      size: 1002462
+      md5: c8ef6618d3ca44bde85279498488a04a
+      size: 1002463
   eval:
-    cmd: python src/eval.py
+    cmd: python3 src/eval.py
     deps:
+    - path: requirements.txt
+      md5: 1f60dd42db13607054b97dfb6f6756ac
+      size: 122
     - path: resources/model.pkl
-      md5: ebbf27ead838df19ae43cfdbca0c7395
-      size: 1002462
+      md5: c8ef6618d3ca44bde85279498488a04a
+      size: 1002463
     - path: resources/test_data.csv
       md5: 0e9773795889ab90473a9963c8bf5edd
       size: 198358
