@@ -4,7 +4,6 @@ import pickle
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter
 from loguru import logger
-from nltk.corpus import stopwords
 
 from src.modules.data_models import ResponseModel, Message, RequestParams
 from src.modules import processing
@@ -21,7 +20,6 @@ logger.configure(
     ]
 )
 router = APIRouter()
-nltk.download('stopwords')
 logger.info("FASTAPI RUN")
 router.model = pickle.load(open("resources/model.pkl", "rb"))
 

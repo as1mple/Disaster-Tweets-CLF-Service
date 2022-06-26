@@ -9,7 +9,9 @@ RUN python -m pip install -U pip && \
     python -m pip install -r requirements_dvc.txt && \
     python -m pip cache purge
 
-RUN python -m nltk.downloader stopwords
+RUN pip install -U nltk
+RUN python -m nltk.downloader -q all
+RUN pip install -U numpy
 
 COPY ./ /app/
 
