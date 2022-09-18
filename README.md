@@ -27,3 +27,65 @@
 
 ## Build & Run Train docker
 > sudo docker build -t repro -f Dockerfile.repro . && sudo docker run -v /{full path to project}/:/app/  repro
+
+- - -
+## DVC base-command
+
+``` bash
+dvc init
+```
+
+``` bash
+dvc remote add -d storage gdrive://YOUR_FOLDER-NAME
+```
+
+``` bash
+dvc add resources/data.txt
+```
+
+``` bash
+dvc run -n split \
+    -p split \
+    -d resources/data.txt \
+    -d requirements.txt \
+    -d src/split.py \
+    -o resources/train.txt \
+    -o resources/test.txt \
+    python src/split.py
+```
+
+``` bash
+dvc run -n split -p split -d resources/data.txt -d requirements.txt -d src/split.py -o resources/train.txt -o resources/test.txt python src/split.py
+```
+
+``` bash
+dvc run -n train \
+    -p train \
+    -d resources/train.txt \
+    -d requirements.txt \
+    -d src/train.py \
+    -o resources/model.txt \
+    python src/train.py
+```
+
+``` bash
+dvc run -n train -p train -d resources/train.txt -d requirements.txt -d src/train.py -o resources/model.txt python src/train.py
+```
+
+``` bash
+dvc run -n eval \
+    -p eval \
+    -d resources/test.txt \
+    -d resources/model.txt \
+    -d requirements.txt \
+    -d src/eval.py \
+    -M metrics.yaml \
+    python src/eval.py
+```
+
+``` bash
+dvc run -n eval -p eval -d resources/test.txt -d resources/model.txt -d requirements.txt -d src/eval.py -M metrics.yaml python src/eval.py
+```
+
+``` bash
+dvc dag  # Visualize a DVC Pipeline
